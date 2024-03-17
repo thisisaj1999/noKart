@@ -1,0 +1,15 @@
+.NavbarMain {
+	display: flex;
+	padding: 1.2rem 2rem;
+	justify-content: space-between;
+}
+
+.NavbarMenuContainer {
+	display: flex;
+	align-items: center;
+	gap: 5rem;
+}
+
+.UserAvatar{
+    cursor: pointer;
+}
