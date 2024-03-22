@@ -13,7 +13,7 @@ const Redirect: React.FC = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		navigate(State.globalState.isLoggedIn ? "/dashboard" : "/login");
+		navigate(State.globalState.isLoggedIn ? "/" : "/login");
 	}, [State.globalState.isLoggedIn, navigate]);
 
 	return null;

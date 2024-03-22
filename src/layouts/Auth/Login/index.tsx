@@ -1,23 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input, Tooltip, Typography, Divider } from "antd";
 import styles from "./Login.module.scss";
 import { getRandomColor } from "../../../utils/services/other";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import GoogleLogo from "../../../assets/google-logo.svg";
 import { useGlobalStore } from "../../../utils/store";
 
 
 const index:React.FC = () => {
 
+  const location = useLocation()
   const navigate = useNavigate()
 
 	const [isHovered, setIsHovered] = useState(false);
   
 	const Update = {
 		Global: {
-			isLoggedIn: useGlobalStore((State) => State.setIsLoggedIn),
+			currentPage: useGlobalStore((State) => State.setCurrentPage),
 		},
 	};
+
+  useEffect(()=>{
+    if(location.pathname === '/login'){
+      Update.Global.currentPage('login')
+    }
+  },[location])
 
 	const hoveredStyle = {
 		color: getRandomColor(),

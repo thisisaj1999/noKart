@@ -32,7 +32,7 @@ const RoutesConfig = () => {
 			routesArray = [
 				...routesArray,
 				{
-					path: `/dashboard`,
+					path: `/`,
 					component: Dashboard,
 					exact: true,
 				},

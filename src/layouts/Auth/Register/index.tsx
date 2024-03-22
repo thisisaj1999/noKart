@@ -2,23 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, Input, Tooltip, Typography, Divider } from "antd";
 import styles from "./Register.module.scss";
 import { getRandomColor } from "../../../utils/services/other";
-
-// logo image
+import { useGlobalStore } from "../../../utils/store"
 import GoogleLogo from "../../../assets/google-logo.svg";
-import { useGlobalStore } from "../../../utils/store";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const index:React.FC = () => {
-
+	
+	const location = useLocation()
+  const navigate = useNavigate()
+	
 	const [isHovered, setIsHovered] = useState(false);
 
 	const Update = {
 		Global: {
-			isLoggedIn: useGlobalStore((State) => State.setIsLoggedIn),
+			currentPage: useGlobalStore((State) => State.setCurrentPage),
 		},
 	};
 
-  const navigate = useNavigate()
+  useEffect(()=>{
+    if(location.pathname === '/register'){
+      Update.Global.currentPage('register')
+    }
+  },[location])
 
 	const hoveredStyle = {
 		color: getRandomColor(),
